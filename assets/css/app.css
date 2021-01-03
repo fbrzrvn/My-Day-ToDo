@@ -1,6 +1,7 @@
 @import './partials/header.css';
 @import './partials/sidebar.css';
 @import './partials/main.css';
+@import './partials/task.css';
 
 :root {
   --main: #f5ba13;
