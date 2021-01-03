@@ -35,5 +35,38 @@
     </div>
   </header>
 
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <ul id="sidebar-list">
+      <li class="sidebar__link active">
+        <i class="fas fa-home blue"></i>
+        All Tasks
+      </li>
+      <li class="sidebar__link">
+        <i class="far fa-star yellow"></i>
+        Important
+      </li>
+      <li class="sidebar__link">
+        <i class="far fa-check-circle green"></i>
+        Completed
+      </li>
+      <!-- Custom List Button -->
+      <li class="sidebar__link sidebar__create">
+        <i class="fas fa-plus-circle"></i>
+        Create List
+      </li>
+      <!-- CREATE LIST FORM  -->
+      <div class="sibebar__form hide" id="create-list-form">
+        <form>
+          <input type="text" id="list-title" class="form__title" placeholder="List Title">
+          <div class="sidebar__btns">
+            <button type="reset">Cancel</button>
+            <button type="submit" id="create-list-btn">Create</button>
+          </div>
+        </form>
+      </div>
+    </ul>
+  </div>
+
 </body>
 </html>
