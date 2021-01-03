@@ -41,16 +41,17 @@
 .sibebar__form {
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
+  padding: 1em;
 }
 .sibebar__form .form__title {
   width: 100%;
-  margin-bottom: 1em;
+  margin: 1em 0;
   padding: .5em;
   border: none;
   border-bottom: 1px solid var(--black);
   border-radius: 5px;
   font-family: inherit;
+  background: none;
 }
 .form__title::placeholder {
   font-size: 300;
@@ -99,7 +100,7 @@
   }
   .sibebar__form {
     position: absolute;
-    bottom: 1em;
+    bottom: -.5em;
     left: 50%;
     transform: translateX(-50%);
     width: 90vw;
