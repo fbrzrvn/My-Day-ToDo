@@ -1,0 +1,117 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: .65;
+  height: 92vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+.main__date {
+  font-weight: 300;
+  align-self: flex-start;
+  margin: 1rem .5em;
+  color: #777;
+}
+.main__container {
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.main__container h1 {
+  font-weight: 300;
+  font-size: 2rem;
+  margin-bottom: 1em;
+  margin-left: 1rem;
+  align-self: flex-start;
+}
+.main__btn {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  color: var(--yellow);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: .85;
+  transition: all 150ms ease-in-out;
+}
+.main__btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+.main__btn i {
+  font-size: 44px;
+}
+
+.main__body {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.main__body h1 {
+  text-transform: capitalize;
+}
+.main__list {
+  list-style: none;
+  width: 100%;
+}
+.main__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-radius: 7px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: .5em;
+  padding: 2em .5em .5em;
+  cursor: pointer;
+  transition: box-shadow 150ms ease-in-out;
+}
+.main__item:hover {
+  box-shadow: 0 5px 15px #e5e5e5;
+}
+.main__content {
+  flex: 1;
+}
+.main__content h4 {
+  margin: 0 .5em;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.main__container p {
+  margin: 0 .5em;
+  font-weight: 500;
+}
+.main__done,
+.main__important,
+.main__delete {
+  border: none;
+  background: none;
+}
+.main__done i,
+.main__important i,
+.main__delete i {
+  font-size: 20px;
+  margin: 0 .5em;
+}
+.main__delete i:hover {
+  color: var(--red);
+  transition: all 200ms ease-in-out;
+}
+
+/* MEDIA QUERY */
+@media screen and (max-width: 600px) {
+  .main {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 1em 1em;
+    height: auto;
+    overflow: auto;
+  }
+}

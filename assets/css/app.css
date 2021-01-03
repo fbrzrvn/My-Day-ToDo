@@ -1,5 +1,6 @@
 @import './partials/header.css';
 @import './partials/sidebar.css';
+@import './partials/main.css';
 
 :root {
   --main: #f5ba13;
@@ -21,6 +22,10 @@ html {
 }
 body {
   background: var(--lightGray);
+}
+main {
+  display: flex;
+  align-items: center;
 }
 
 i {
@@ -48,4 +53,13 @@ i:hover {
 }
 .red {
   color: var(--red);
+}
+
+
+/* MEDIA QUERY */
+@media screen and (max-width: 600px) {
+  main {
+    flex-direction: column;
+    width: 100%;
+  }
 }
