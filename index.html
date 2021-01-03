@@ -14,7 +14,7 @@
    <!-- CSS -->
    <link rel="stylesheet" href="assets/css/app.css">
    <!-- JS -->
-  <script defer src="assets/js/app.js"></script>
+  <script defer type="module" src="assets/js/app.js"></script>
   <title>Keeper</title>
 </head>
 <body>
@@ -39,20 +39,20 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
       <ul id="sidebar-list">
-        <li class="sidebar__link active">
+        <li class="sidebar__link active" data-link>
           <i class="fas fa-home blue"></i>
-          All Tasks
+          Tasks
         </li>
-        <li class="sidebar__link">
+        <li class="sidebar__link" data-link>
           <i class="far fa-star yellow"></i>
           Important
         </li>
-        <li class="sidebar__link">
+        <li class="sidebar__link" data-link>
           <i class="far fa-check-circle green"></i>
           Completed
         </li>
         <li class="sidebar__link sidebar__create">
-          <i class="fas fa-plus-circle"></i>
+          <i class="fas fa-plus-circle" id="add-list"></i>
           Create List
         </li>
         <!-- LIST FORM  -->
@@ -70,20 +70,7 @@
     <!-- TASK LIST -->
     <div class="main">
       <p id="date" class="main__date">Today</p>
-      <div class="main__container" id="tasklist-container">
-        <!--<div id="all-tasks" class="main__body" data-default-list>
-          <h1>All Tasks</h1>
-          <ul id="all-tasks-list" class="main__list"></ul>
-        </div>
-        <div id="important-tasks" class="taskList__body hide" data-default-list>
-          <h1>Important</h1>
-          <ul id="important-list" class="taskList__list"></ul>
-        </div>
-        <div id="completed-tasks" class="taskList__body hide" data-default-list>
-          <h1>Completed</h1>
-          <ul id="completed-list" class="taskList__list"></ul>
-        </div> -->
-      </div>
+      <div class="main__container" id="tasklist-container"></div>
       <button id="add-task" class="main__btn">
         <i class="fas fa-plus-circle"></i>
       </button>
