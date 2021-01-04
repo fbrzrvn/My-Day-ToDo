@@ -1,11 +1,16 @@
-import { getDate } from './date.js';
-import { toggleTaskEvent } from './taskForm.js';
-import { toggleListEvent } from './listForm.js';
-import { handleEvent, onLoad } from './renderTaskList.js';
+import { getDate } from './model/date.js';
+import { toggleTaskEvent } from './views/taskForm.js';
+import { toggleListEvent } from './views/listForm.js';
+import { handleRenderTaskList } from './views/renderTaskList.js';
 
 
-getDate();
-toggleTaskEvent();
-toggleListEvent();
-handleEvent();
-onLoad();
+window.addEventListener('DOMContentLoaded', () => {
+  getDate();
+  toggleTaskEvent();
+  toggleListEvent();
+  handleRenderTaskList();
+})
+
+
+
+

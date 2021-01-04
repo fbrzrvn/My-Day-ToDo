@@ -7,12 +7,13 @@ const toggleTaskForm = () => {
 const toggleTaskEvent = () => {
   const showTaskFormBtn = document.getElementById('add-task');
   const closeTaskFormBtn = document.getElementById('close-form');
+
   showTaskFormBtn.addEventListener('click', toggleTaskForm);
   closeTaskFormBtn.addEventListener('click', toggleTaskForm);
 }
 
 
-export { toggleTaskEvent };
+export { toggleTaskEvent, toggleTaskForm };
 
 
 

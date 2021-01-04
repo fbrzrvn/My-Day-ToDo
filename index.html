@@ -39,15 +39,15 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
       <ul id="sidebar-list">
-        <li class="sidebar__link active" data-link>
+        <li class="sidebar__link active" id="all-tasks" data-link>
           <i class="fas fa-home blue"></i>
-          Tasks
+          All Tasks
         </li>
-        <li class="sidebar__link" data-link>
+        <li class="sidebar__link" id="important" data-link>
           <i class="far fa-star yellow"></i>
           Important
         </li>
-        <li class="sidebar__link" data-link>
+        <li class="sidebar__link" id="completed" data-link>
           <i class="far fa-check-circle green"></i>
           Completed
         </li>
@@ -69,8 +69,21 @@
     </div>
     <!-- TASK LIST -->
     <div class="main">
-      <p id="date" class="main__date">Today</p>
-      <div class="main__container" id="tasklist-container"></div>
+      <p id="date" class="main__date"></p>
+      <div class="main__container" id="tasklist-container">
+        <div id="all-tasks" class="main__body" data-list>
+          <h1>All Tasks</h1>
+          <ul id="all-tasks-list" class="main__list"></ul>
+        </div>
+        <div id="important-tasks" class="main__body hide" data-list>
+          <h1>Important</h1>
+          <ul id="important-list" class="main__list"></ul>
+        </div>
+        <div id="completed-tasks" class="main__body hide" data-list>
+          <h1>Completed</h1>
+          <ul id="completed-list" class="main__list"></ul>
+        </div>
+      </div>
       <button id="add-task" class="main__btn">
         <i class="fas fa-plus-circle"></i>
       </button>
@@ -97,9 +110,9 @@
 
           <div class="form__checkbox">
             <label for="task-complete">Complete</label>
-            <input type="checkbox" id="done">
+            <input type="checkbox" id="is-done">
             <label for="task-important">Important</label>
-            <input type="checkbox" id="important">
+            <input type="checkbox" id="is-important">
           </div>
 
           <div class="form__option">
