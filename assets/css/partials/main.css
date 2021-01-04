@@ -5,6 +5,8 @@
   height: 92vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  /* background-image: url("https://www.transparenttextures.com/patterns/asfalt-dark.png"); */
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
 .main__date {
   font-weight: 300;
@@ -30,7 +32,7 @@
   position: fixed;
   bottom: 2em;
   right: 2em;
-  color: var(--yellow);
+  color: var(--main);
   background: none;
   border: none;
   cursor: pointer;
@@ -67,12 +69,12 @@
   border-radius: 7px;
   border-bottom: 1px solid rgba(0,0,0,.1);
   margin-bottom: .5em;
-  padding: 2em .5em .5em;
+  padding: 1.5em .5em;
   cursor: pointer;
   transition: box-shadow 150ms ease-in-out;
 }
 .main__item:hover {
-  box-shadow: 0 5px 15px #e5e5e5;
+  box-shadow: 0 5px 15px rgba(0,0,0,.1);
 }
 .main__content {
   flex: 1;

@@ -49,7 +49,6 @@
   padding: .5em;
   border: none;
   border-bottom: 1px solid var(--black);
-  border-radius: 5px;
   font-family: inherit;
   background: none;
 }
@@ -80,7 +79,6 @@
     flex-direction: row;
     margin: 2em 0 0;
     padding: 1em 0 5em;
-    height: auto;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,.1);
     width: 100%;
