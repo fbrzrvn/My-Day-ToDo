@@ -36,9 +36,9 @@ const addToDo = toDo => {
   const RED = 'red';
 
   const IMPORTANT = toDo.isImportant ? STAR : UNSTAR;
-  const RED_LINE = toDo.isImportant && RED;
+  const RED_LINE = toDo.isImportant ? RED : '';
   const DONE = toDo.isDone ? CHECK : UNCHECK;
-  const LINE = toDo.isDone && LINE_THROUGH;
+  const LINE = toDo.isDone ? LINE_THROUGH : '';
 
   const item =
     `
@@ -110,19 +110,38 @@ const createToDo = e => {
 
   toggleTaskForm();
 
-  // if (!customList) return;
+}
 
-  // customList.forEach(list => {
-  //   if (list.title === toDo.list) {
-  //     list.tasks.push(toDo);
-  //     localStorage.setItem('userList', JSON.stringify(customList));
-  //   }
-  // })
 
+const setTaskToDone = e => {
+  const targetElement = taskList.find( toDo => toDo.id == e.target.id);
+  targetElement.isDone = targetElement.isDone ? false : true;
+  localStorage.setItem('toDoList', JSON.stringify(taskList));
+  location.reload();
+}
+
+
+const setTaskToImportant = e => {
+  const targetElement = taskList.find( toDo => toDo.id == e.target.id);
+  targetElement.isImportant = targetElement.isImportant ? false : true;
+  localStorage.setItem('toDoList', JSON.stringify(taskList));
+  location.reload();
+}
+
+
+const deleteTask = e => {
+  // Remove HTML element
+  e.path[2].remove();
+  // Find Item
+  const targetElement = taskList.find( toDo => toDo.id == e.target.id);
+  // Remove item
+  taskList.splice(targetElement, 1);
+  // Update Local Storage
+  localStorage.setItem('toDoList', JSON.stringify(taskList));
 }
 
 
 
 
 
-export { getTask, createToDo };
+export { getTask, createToDo, setTaskToDone, setTaskToImportant, deleteTask };

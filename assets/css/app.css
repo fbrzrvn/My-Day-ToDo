@@ -55,6 +55,9 @@ i:hover {
 .red {
   color: var(--red);
 }
+.line-through {
+  text-decoration: line-through;
+}
 
 
 /* MEDIA QUERY */
