@@ -1,3 +1,7 @@
+import { showCustomList } from "../views/renderTaskList.js";
+import { applyStyle } from '../views/task.js';
+
+
 let customList, id;
 
 
@@ -24,6 +28,7 @@ const loadCustomList = array => {
 const addList = list => {
   addListLink(list);
   addListContainer(list);
+  showCustomList();
 }
 
 
@@ -32,7 +37,7 @@ const addListLink = list => {
 
   const linkItem =
     `
-      <li class="sidebar__link id="${list.title}" data-link>
+      <li class="sidebar__link" id="${list.title}" data-custom-link>
           <i class="fas fa-list"></i>
           ${list.title}
       </li>
@@ -48,9 +53,9 @@ const addListContainer = list => {
   const taskListContainer = document.getElementById('tasklist-container');
   const listItem =
     `
-      <div id="${list.title}" class="main__body hide" data-list>
+      <div class="main__body hide" id="${list.title}" data-custom-list>
         <h1>${list.title}</h1>
-        <ul id="${list.title}-list" class="main__list"></ul>
+        <ul class="main__list" id="${list.title}-list"></ul>
       </div>
     `;
 
@@ -58,6 +63,7 @@ const addListContainer = list => {
   taskListContainer.insertAdjacentHTML(position, listItem);
 
   renderCustomTaskList(list);
+
 }
 
 
@@ -93,47 +99,48 @@ const createList = e => {
 const renderCustomTaskList = list => {
   const customTaskListContainer = document.getElementById(`${list.title}-list`);
 
-  customList.forEach(list => {
-    if (list.tasks.length > 0) {
-      list.tasks.forEach(toDo => {
+  if (!list.tasks) return;
 
-        const STAR = 'fas'
-        const UNSTAR = 'far'
-        const CHECK = 'fa-check-circle';
-        const UNCHECK = 'fa-circle';
-        const LINE_THROUGH = 'line-through';
-        const RED = 'red';
+  list.tasks.forEach(toDo => {
 
-        const IMPORTANT = toDo.isImportant ? STAR : UNSTAR;
-        const RED_LINE = toDo.isImportant && RED;
-        const DONE = toDo.isDone ? CHECK : UNCHECK;
-        const LINE = toDo.isDone && LINE_THROUGH;
+    const STAR = 'fas'
+    const UNSTAR = 'far'
+    const CHECK = 'fa-check-circle';
+    const UNCHECK = 'fa-circle';
+    const LINE_THROUGH = 'line-through';
+    const RED = 'red';
 
-        const item =
-          `
-            <li class="main__item">
-              <button class="main__done">
-                <i class="far ${DONE} green"  id="${toDo.id}"></i>
-              </button>
-              <div class="main__content">
-                <h4 class="${RED_LINE}">${toDo.title}</h4>
-                <p class="${LINE} ${RED_LINE}">${toDo.description}</p>
-              </div>
-              <button class="main__important">
-                <i class="${IMPORTANT} fa-star yellow" id="${toDo.id}"></i>
-              </button>
-              <button class="main__delete">
-                <i class="far fa-trash-alt" id="${toDo.id}"></i>
-              </button>
-            </li>
-          `;
+    const IMPORTANT = toDo.isImportant ? STAR : UNSTAR;
+    const RED_LINE = toDo.isImportant && RED;
+    const DONE = toDo.isDone ? CHECK : UNCHECK;
+    const LINE = toDo.isDone && LINE_THROUGH;
 
-        const position = 'beforeend';
-        customTaskListContainer.insertAdjacentHTML(position, item);
-      })
-    }
+    const item =
+      `
+        <li class="main__item">
+          <button class="main__done">
+            <i class="far ${DONE} green"  id="${toDo.id}"></i>
+          </button>
+          <div class="main__content">
+            <h4 class="${RED_LINE}">${toDo.title}</h4>
+            <p class="${LINE} ${RED_LINE}">${toDo.description}</p>
+          </div>
+          <button class="main__important">
+            <i class="${IMPORTANT} fa-star yellow" id="${toDo.id}"></i>
+          </button>
+          <button class="main__delete">
+            <i class="far fa-trash-alt" id="${toDo.id}"></i>
+          </button>
+        </li>
+      `;
+
+    const position = 'beforeend';
+    customTaskListContainer.insertAdjacentHTML(position, item);
+
+    applyStyle();
+
   })
 }
 
 
-export { createList, getList };
+export { createList, getList, renderCustomTaskList };

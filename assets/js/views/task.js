@@ -1,7 +1,6 @@
 import { deleteTask, setTaskToDone, setTaskToImportant } from '../controller/task.js';
 
 
-
 const applyStyle = () => {
   const taskListElement = document.querySelectorAll('.main__list');
   taskListElement.forEach(element => {
@@ -40,7 +39,6 @@ const applyImportantStyle = e => {
   e.path[2].children[1].children[0].classList.toggle(RED);
   e.path[2].children[1].children[1].classList.toggle(RED);
 }
-
 
 
 export { applyStyle };
