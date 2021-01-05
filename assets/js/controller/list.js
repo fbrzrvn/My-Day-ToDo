@@ -40,6 +40,9 @@ const addListLink = list => {
       <li class="sidebar__link" id="${list.title}" data-custom-link>
           <i class="fas fa-list"></i>
           ${list.title}
+          <button class="sidebar__delete">
+            <i class="far fa-trash-alt"></i>
+          </button>
       </li>
     `;
 

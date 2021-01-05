@@ -37,6 +37,17 @@
 .sidebar__create i.active {
   transform: rotate(45deg);
 }
+.sidebar__delete {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--red);
+  display: none;
+  transition: all 200ms ease-in-out;
+}
+.sidebar__link:hover .sidebar__delete {
+  display: flex;
+}
 
 .sibebar__form {
   display: flex;
@@ -92,9 +103,14 @@
   .sidebar__link {
     margin: 0;
     padding: 1em;
+    min-width: 25%;
   }
   .sidebar__create {
     border: none;
+  }
+  .sidebar__delete i {
+    font-size: 20px;
+    margin-right: -.5rem;
   }
   .sibebar__form {
     position: absolute;
