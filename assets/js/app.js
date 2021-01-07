@@ -12,6 +12,7 @@ const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskInput = document.querySelector('[data-new-task-input]');
 const deleteCompleteTaskBtn = document.querySelector('[data-delete-complete-tasks-btn]');
 const dateElement = document.querySelector('[data-date]');
+const deleteContainer = document.querySelector('[data-delete-stuff]');
 const searchTaskForm = document.querySelector('[data-search-task-form]');
 const searchTaskInput = document.querySelector('[data-search-task-input]');
 // VARIABLES
@@ -117,7 +118,10 @@ searchTaskForm.addEventListener('submit', e => {
   const search = searchTask(searchName);
   renderFoundedTask(search);
 
-  // console.log(search);
+  setTimeout(()=> {
+    searchTaskInput.value = '';
+  },3000)
+
 })
 
 // FUNCTIONS
@@ -144,15 +148,28 @@ function render() {
   renderLists();
 
   const selectedList = lists.find(list => list.id === selectedListId);
-
-  if (!selectedListId) {
-    selectedListId = 'all';
-  } else {
-    listTitleElement.innerText = selectedList.name;
-    renderTaskCount(selectedList);
-    clearElement(tasksContainer);
-    renderTasks(selectedList);
+  const option = {
+    all: 'all',
+    important: 'important',
+    complete: 'complete'
   }
+
+  if (!selectedListId) selectedListId = option.all;
+
+  if ( selectedListId === option.all || selectedListId === option.important) {
+    deleteContainer.classList.add('hide');
+  } else if (selectedListId === option.complete) {
+    deleteContainer.classList.remove('hide');
+    deleteListBtn.classList.add('hide');
+  } else {
+    deleteContainer.classList.remove('hide');
+    deleteListBtn.classList.remove('hide');
+  }
+
+  listTitleElement.innerText = selectedList.name;
+  clearElement(tasksContainer);
+  renderTaskCount(selectedList);
+  renderTasks(selectedList);
 }
 
 function renderTaskCount(selectedList) {
@@ -163,12 +180,12 @@ function renderTaskCount(selectedList) {
 
 function renderFoundedTask(list) {
   tasksContainer.innerText = '';
-  listTitleElement.innerText = 'Tasks Found:';
   listCountElement.innerText = '';
+  listTitleElement.innerText = 'Tasks Found:';
+  deleteContainer.classList.add('hide');
 
   list.length > 0 ? list.forEach(task => renderTask(task)) :
     listTitleElement.innerText = 'No tasks was found! 🚫 ';
-
 }
 
 function renderTasks(selectedList) {
@@ -198,7 +215,7 @@ function renderTask(task) {
   const important = taskElement.querySelector('[data-important]');
   important.id = task.id;
   important.className = `${IMPORTANT} fa-star yellow`;
-  tasksContainer.appendChild(taskElement);
+  tasksContainer.insertBefore(taskElement, tasksContainer.firstChild);
 }
 
 function renderLists() {
@@ -234,6 +251,7 @@ function setTaskToComplete(e) {
   e.target.classList.toggle(UNCHECK);
   e.path[1].children[1].children[0].classList.toggle(LINE_THROUGH);
 }
+
 function setTaskToImportant(e) {
   const STAR = 'fas';
   const UNSTAR = 'far';

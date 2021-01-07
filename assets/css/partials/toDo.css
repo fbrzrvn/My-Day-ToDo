@@ -78,11 +78,10 @@
   border: none;
   background: none;
   color: var(--main);
-  padding-bottom: 2em;
-  margin: auto;
-  width: 50vw;
+  width: 100%;
+  padding: 0 .5em;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   opacity: .85;
   cursor: pointer;
@@ -93,7 +92,7 @@
   border: none;
   font-family: inherit;
   background: none;
-  width: 80%;
+  width: 100%;
 }
 .add-task:hover {
   opacity: 1;
@@ -134,8 +133,5 @@
     padding: 0 1em 1em;
     height: auto;
     overflow: auto;
-  }
-  .add-task {
-    padding-bottom: 1em;
   }
 }
