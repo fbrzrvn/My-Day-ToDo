@@ -1,0 +1,141 @@
+.todo {
+  display: flex;
+  flex-direction: column;
+  flex: .65;
+  height: 92vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+}
+.todo__date {
+  font-weight: 300;
+  align-self: flex-start;
+  margin: 1rem;
+  color: #777;
+}
+.todo__list {
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.todo__header {
+   font-size: 2rem;
+  margin-bottom: 1em;
+  align-self: flex-start;
+  width: 100%;
+  text-transform: capitalize;
+}
+.todo__header h2 {
+  font-weight: 500;
+}
+.todo__header p {
+  font-size: 1rem;
+}
+.todo__body {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+.task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-radius: 7px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: .5em;
+  padding: 1em .5em;
+  cursor: pointer;
+  transition: box-shadow 150ms ease-in-out;
+}
+.task:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+.task__info {
+  flex: 1;
+}
+.task__info h4 {
+  margin: 0 .5em;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.task__info p {
+  margin: 0 .5em;
+  font-weight: 500;
+}
+.task i {
+  font-size: 16px;
+  margin: 0 .25em;
+}
+
+.add-task {
+  border: none;
+  background: none;
+  color: var(--main);
+  padding-bottom: 2em;
+  margin: auto;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: .85;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+.add-task input {
+  padding: .5em;
+  border: none;
+  font-family: inherit;
+  background: none;
+  width: 80%;
+}
+.add-task:hover {
+  opacity: 1;
+}
+.add__btn {
+  border: none;
+  background: none;
+  color: var(--blue);
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.delete__btn {
+  border: none;
+  background: none;
+  color: #777;
+  margin: .5em;
+  opacity: .85;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.delete__btn:hover {
+  opacity: 1;
+}
+
+
+
+/* MEDIA QUERY */
+@media screen and (max-width: 600px) {
+  .todo {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 1em 1em;
+    height: auto;
+    overflow: auto;
+  }
+  .add-task {
+    padding-bottom: 1em;
+  }
+}

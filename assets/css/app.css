@@ -1,10 +1,8 @@
 @import './partials/header.css';
 @import './partials/sidebar.css';
-@import './partials/main.css';
-@import './partials/task.css';
+@import './partials/todo.css';
 
 :root {
-  --main: #f5ba13;
   --black: #333;
   --lightGray: #eee;
   --white: #fff;
@@ -28,7 +26,14 @@ main {
   display: flex;
   align-items: center;
 }
-
+input:focus,
+input:hover {
+  border-bottom: 1px solid var(--black);
+  outline: none;
+}
+input::placeholder {
+  font-size: 300;
+}
 i {
   font-size: 28px;
   vertical-align: middle;

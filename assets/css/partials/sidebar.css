@@ -8,7 +8,11 @@
 .sidebar ul {
   list-style: none;
 }
-.sidebar__link {
+.sidebar a {
+  text-decoration: none;
+  color: inherit;
+}
+.sidebar__list {
   padding: 1em 2em;
   font-weight: 500;
   text-transform: uppercase;
@@ -17,69 +21,26 @@
   cursor: pointer;
   transition: all 150ms ease-in-out;
 }
-.sidebar__link.active {
+.sidebar__list.active {
   font-weight: 600;
 }
-.sidebar__link:hover {
+.sidebar__list:hover {
   background: #ddd;
 }
-.sidebar__link i {
+.sidebar__list i {
   font-size: 22px;
   margin-right: .25em;
 }
-.sidebar__create {
-  border-bottom: 1px solid rgba(30,30,30,.1);
-}
-.sidebar__create i {
-  color: var(--main);
-  transition: all 250ms ease-in-out;
-}
-.sidebar__create i.active {
-  transform: rotate(45deg);
-}
-.sidebar__delete {
-  margin-left: auto;
+.sidebar__list button {
   border: none;
   background: none;
-  color: var(--red);
-  display: none;
-  transition: all 200ms ease-in-out;
+  color: var(--blue);
 }
-.sidebar__link:hover .sidebar__delete {
-  display: flex;
-}
-
-.sibebar__form {
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
-}
-.sibebar__form .form__title {
-  width: 100%;
-  margin: 1em 0;
+.sidebar__list input {
   padding: .5em;
   border: none;
-  border-bottom: 1px solid var(--black);
   font-family: inherit;
   background: none;
-}
-.form__title::placeholder {
-  font-size: 300;
-  color: #aaa;
-}
-.sidebar__btns {
-  display: flex;
-  justify-content: flex-end;
-}
-.sidebar__btns button {
-  margin-left: .5em;
-  padding: .25em .75em;
-  border: 1px solid var(--black);
-  border-radius: 7px;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
 }
 
 
@@ -87,36 +48,21 @@
 @media screen and (max-width: 600px) {
   .sidebar {
     flex: 1;
-    flex-direction: row;
+    flex-direction: column;
     margin: 2em 0 0;
-    padding: 1em 0 5em;
+    padding: 1em 0;
     border: none;
     border-bottom: 1px solid rgba(0,0,0,.1);
     width: 100%;
-    position: relative;
+    height: auto;
   }
   .sidebar ul {
     display: flex;
     flex-wrap: wrap;
-    margin: auto;
   }
-  .sidebar__link {
-    margin: 0;
+  .sidebar__list {
+    margin: 0 auto;
     padding: 1em;
-    min-width: 25%;
   }
-  .sidebar__create {
-    border: none;
-  }
-  .sidebar__delete i {
-    font-size: 20px;
-    margin-right: -.5rem;
-  }
-  .sibebar__form {
-    position: absolute;
-    bottom: -.5em;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90vw;
-  }
+
 }

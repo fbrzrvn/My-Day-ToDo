@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/app.css">
   <!-- FAVICON -->
   <link rel="icon" href="assets/favicon/check-solid.svg">
-   <!-- FONT AWESOME -->
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-   <!-- GOOGLE FONT -->
-   <link rel="preconnect" href="https://fonts.gstatic.com">
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-   <!-- CSS -->
-   <link rel="stylesheet" href="assets/css/app.css">
-   <!-- JS -->
-  <script defer type="module" src="assets/js/app.js"></script>
-  <title>Keeper</title>
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/app.css">
+  <!-- JS -->
+  <script defer src="assets/js/app.js"></script>
+  <title>My Day - ToDo</title>
 </head>
 <body>
 
@@ -24,13 +23,13 @@
     <div class="logo">
       <a href="/">
         <i class="fas fa-check"></i>
-        <span>Keeper App</span>
+        <span>My Day - ToDo</span>
       </a>
     </div>
     <div class="search">
-      <form action="">
+      <form action="" data-search-task-form>
         <i class="fas fa-search"></i>
-        <input type="search" placeholder="Search">
+        <input type="search" placeholder="Search" data-search-task-input>
       </form>
     </div>
   </header>
@@ -38,114 +37,56 @@
   <main>
     <!-- SIDEBAR -->
     <div class="sidebar">
-      <ul id="sidebar-list">
-        <li class="sidebar__link active" id="all-tasks" data-link>
-          <i class="fas fa-home blue"></i>
-          All Tasks
-        </li>
-        <li class="sidebar__link" id="important" data-link>
-          <i class="far fa-star yellow"></i>
-          Important
-        </li>
-        <li class="sidebar__link" id="completed" data-link>
-          <i class="far fa-check-circle green"></i>
-          Completed
-        </li>
-        <li class="sidebar__link sidebar__create">
+      <ul data-lists></ul>
+      <form action="" class="sidebar__list" data-new-list-form>
+        <button type="submit">
           <i class="fas fa-plus-circle" id="add-list"></i>
-          Create List
-        </li>
-        <!-- LIST FORM  -->
-        <div class="sibebar__form hide" id="create-list-form">
-          <form>
-            <input type="text" id="list-title" class="form__title" placeholder="List Title">
-            <div class="sidebar__btns">
-              <button type="reset">Cancel</button>
-              <button type="submit" id="create-list-btn">Create</button>
-            </div>
-          </form>
-        </div>
-      </ul>
-    </div>
-    <!-- TASK LIST -->
-    <div class="main">
-      <p id="date" class="main__date"></p>
-      <div class="main__container" id="tasklist-container">
-        <div id="all-tasks" class="main__body" data-list>
-          <h1>All Tasks</h1>
-          <ul id="all-tasks-list" class="main__list"></ul>
-        </div>
-        <div id="important-tasks" class="main__body hide" data-list>
-          <h1>Important</h1>
-          <ul id="important-list" class="main__list"></ul>
-        </div>
-        <div id="completed-tasks" class="main__body hide" data-list>
-          <h1>Completed</h1>
-          <ul id="completed-list" class="main__list"></ul>
-        </div>
-      </div>
-      <button id="add-task" class="main__btn">
-        <i class="fas fa-plus-circle"></i>
-      </button>
-    </div>
-
-    <!-- TASK FORM -->
-    <div id="task-form" class="task hide">
-      <div class="task__container">
-        <h2>New Task</h2>
-        <button id="close-form" class="task__close">
-          <i class="far fa-times-circle"></i>
         </button>
-
-        <form class="form">
-          <div class="form__title">
-            <label for="task-title">Title</label>
-            <input type="text" id="task-title" placeholder="Task Title">
+        <input type="text" placeholder="List Name" data-new-list-input>
+      </form>
+    </div>
+    <!-- TO-DO -->
+    <div class="todo">
+      <p class="todo__date" data-date>today</p>
+      <div class="todo__list" data-list-display-container>
+        <div class="todo__header">
+          <h2 data-list-title></h2>
+          <p data-list-count></p>
+        </div>
+        <div class="todo__body">
+          <div class="tasks" data-tasks>
           </div>
-
-          <div class="form__description">
-            <label for="task-description">Description</label>
-            <textarea id="task-description" cols="30" rows="7" placeholder="Task Description"></textarea>
-          </div>
-
-          <div class="form__checkbox">
-            <label for="task-complete">Complete</label>
-            <input type="checkbox" id="is-done">
-            <label for="task-important">Important</label>
-            <input type="checkbox" id="is-important">
-          </div>
-
-          <div class="form__option">
-            <div class="option__colors">
-              <label for="colors">Choose Color</label>
-              <select id="colors">
-                <option value="0">Color..</option>
-                <option value="1">Purple</option>
-                <option value="2">Green</option>
-                <option value="3">Yellow</option>
-                <option value="4">Orange</option>
-                <option value="5">Grey</option>
-                <option value="6">Pink</option>
-                <option value="7">Blue</option>
-              </select>
-            </div>
-
-            <div class="option__lists">
-              <label for="custom-list">Choose List</label>
-              <select id="custom-list">
-                <option value="0">Choose List</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form__btns">
-            <button type="reset">Clear</button>
-            <button type="submit" id="create-task-btn">Create</button>
-          </div>
-        </form>
+        </div>
+        <!-- DELETE STUFF -->
+        <div class="delete">
+          <button class="delete__btn" data-delete-complete-tasks-btn>Clear Complete Task</button>
+          <button class="delete__btn" data-delete-list-btn>Delete List</button>
+        </div>
       </div>
+      <!-- TASK FORM -->
+      <form action="" class="add-task" data-new-task-form>
+        <button class="add__btn">
+          <i class="fas fa-plus-circle"></i>
+        </button>
+        <input type="text" placeholder="Task Name" data-new-task-input>
+      </form>
     </div>
   </main>
 
+  <!-- TEMPLATE -->
+  <template id="task-template">
+    <div class="task">
+      <i class="far fa-circle green" data-complete></i>
+      <div class="task__info">
+        <p></p>
+      </div>
+      <i class="far fa-star yellow" data-important></i>
+    </div>
+  </template>
+
 </body>
 </html>
+
+
+
+

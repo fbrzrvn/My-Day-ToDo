@@ -1,5 +1,5 @@
 header {
-  background: var(--main);
+  background: var(--blue);
   box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
   display: flex;
   align-items: center;
@@ -22,10 +22,10 @@ header {
   color: var(--white);
 }
 .search input {
-  width: 250px;
+  width: 260px;
   height: 35px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   margin-left: .5em;
 }
