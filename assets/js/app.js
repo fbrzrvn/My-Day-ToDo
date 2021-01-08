@@ -17,9 +17,9 @@ const searchTaskForm = document.querySelector('[data-search-task-form]');
 const searchTaskInput = document.querySelector('[data-search-task-input]');
 // VARIABLES
 let defaultList = [
-  {id: 'all', name:'all tasks', tasks: []},
-  {id: 'important', name:'important', tasks: []},
-  {id: 'complete', name:'complete', tasks: []},
+  {id: 'all', name:'all tasks', icon: 'fas fa-home blue', tasks: [], },
+  {id: 'important', name:'important', icon: 'fas fa-star yellow', tasks: []},
+  {id: 'complete', name:'complete', icon: 'fas fa-check-circle green', tasks: []},
 ];
 let lists = JSON.parse(localStorage.getItem('taskList')) || defaultList;
 let selectedListId = JSON.parse(localStorage.getItem('selectedList'));
@@ -45,29 +45,35 @@ tasksContainer.addEventListener('click', e => {
       if (!selectedTask.complete) {
         selectedTask.complete = true;
         completedList.tasks.push(selectedTask);
-        allTaskList.tasks = allTaskList.tasks.filter(task => task.id !== selectedTask.id);
-        importantList.tasks = importantList.tasks.filter(task => task.id !== selectedTask.id);
+        filterTaskList(allTaskList, selectedTask);
+        filterTaskList(importantList, selectedTask);
       } else {
         selectedTask.complete = false;
-        completedList.tasks = completedList.tasks.filter(task => task.id !== selectedTask.id);
+        filterTaskList(completedList, selectedTask);
         allTaskList.tasks.push(selectedTask);
 
         selectedTask.important && importantList.tasks.push(selectedTask);
       }
       setTaskToComplete(e);
 
-    } else {
+    } else if (e.target.className.includes('yellow')) {
       if (!selectedTask.important) {
         selectedTask.important = true;
         importantList.tasks.push(selectedTask);
       } else {
         selectedTask.important = false;
-        importantList.tasks = importantList.tasks.filter(task => task.id !== selectedTask.id);
+        filterTaskList(importantList, selectedTask);
       }
       setTaskToImportant(e);
+
+    } else {
+      filterTaskList(selectedList, selectedTask);
+      filterTaskList(allTaskList, selectedTask);
+      filterTaskList(importantList, selectedTask);
+      filterTaskList(completedList, selectedTask);
     }
 
-    save();
+    saveAndRender();
     renderTaskCount(selectedList);
   }
 })
@@ -128,8 +134,11 @@ searchTaskForm.addEventListener('submit', e => {
 })
 
 // FUNCTIONS
+function filterTaskList(list, target) {
+  return list.tasks = list.tasks.filter(list => list.id !== target.id);
+}
 function createList(name) {
-  return { id: Date.now().toString(), name:name, tasks:[] };
+  return { id: Date.now().toString(), name:name, icon:'fas fa-list-ul', tasks:[] };
 }
 
 function createTask(name) {
@@ -160,28 +169,37 @@ function render() {
   if (!selectedListId) selectedListId = option.all;
 
   if ( selectedListId === option.all) {
-    deleteContainer.classList.add('hide');
-    newTaskForm.classList.remove('hide');
+    addHideClass(deleteContainer);
+    removeHideClass(newTaskForm);
+    removeHideClass(listCountElement);
 
   } else if (selectedListId === option.important) {
-    deleteContainer.classList.add('hide');
-    newTaskForm.classList.add('hide');
+    addHideClass(deleteContainer);
+    addHideClass(newTaskForm);
+    removeHideClass(listCountElement);
   }
+
   else if (selectedListId === option.complete) {
-    deleteContainer.classList.remove('hide');
-    deleteListBtn.classList.add('hide');
-    newTaskForm.classList.add('hide');
+    addHideClass(deleteContainer);
+    addHideClass(newTaskForm);
+    addHideClass(listCountElement);
+
+    if (selectedList.tasks.length > 0) {
+      removeHideClass(deleteContainer);
+      addHideClass(deleteListBtn);
+    }
 
   } else {
-    deleteContainer.classList.remove('hide');
-    deleteListBtn.classList.remove('hide');
-    newTaskForm.classList.remove('hide');
+    removeHideClass(deleteContainer);
+    removeHideClass(deleteListBtn);
+    removeHideClass(newTaskForm);
+    removeHideClass(listCountElement);
   }
 
   listTitleElement.innerText = selectedList.name;
   clearElement(tasksContainer);
-  renderTaskCount(selectedList);
   renderTasks(selectedList);
+  renderTaskCount(selectedList);
 }
 
 function renderTaskCount(selectedList) {
@@ -227,6 +245,8 @@ function renderTask(task) {
   const important = taskElement.querySelector('[data-important]');
   important.id = task.id;
   important.className = `${IMPORTANT} fa-star yellow`;
+  const deleteTask = taskElement.querySelector('[data-delete-task]');
+  deleteTask.id = task.id;
   tasksContainer.insertBefore(taskElement, tasksContainer.firstChild);
 }
 
@@ -235,7 +255,7 @@ function renderLists() {
     const listElement = document.createElement('li');
     listElement.dataset.listId = list.id;
     listElement.classList = 'sidebar__list';
-    listElement.innerText = list.name;
+    listElement.innerHTML = `<i class="${list.icon}"></i>${list.name}`;
     if (list.id === selectedListId) {
       listElement.classList.add('active');
     }
@@ -276,6 +296,14 @@ function setTaskToImportant(e) {
 function searchTask(name) {
   const allTaskList = lists.find(list => list.id === 'all');
   return allTaskList.tasks.filter(task => task.name.includes(name));
+}
+
+function addHideClass(element) {
+  return element.classList.add('hide');
+}
+
+function removeHideClass(element) {
+  return element.classList.remove('hide');
 }
 
 
