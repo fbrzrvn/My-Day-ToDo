@@ -46,10 +46,13 @@ tasksContainer.addEventListener('click', e => {
         selectedTask.complete = true;
         completedList.tasks.push(selectedTask);
         allTaskList.tasks = allTaskList.tasks.filter(task => task.id !== selectedTask.id);
+        importantList.tasks = importantList.tasks.filter(task => task.id !== selectedTask.id);
       } else {
         selectedTask.complete = false;
         completedList.tasks = completedList.tasks.filter(task => task.id !== selectedTask.id);
         allTaskList.tasks.push(selectedTask);
+
+        selectedTask.important && importantList.tasks.push(selectedTask);
       }
       setTaskToComplete(e);
 
@@ -156,14 +159,23 @@ function render() {
 
   if (!selectedListId) selectedListId = option.all;
 
-  if ( selectedListId === option.all || selectedListId === option.important) {
+  if ( selectedListId === option.all) {
     deleteContainer.classList.add('hide');
-  } else if (selectedListId === option.complete) {
+    newTaskForm.classList.remove('hide');
+
+  } else if (selectedListId === option.important) {
+    deleteContainer.classList.add('hide');
+    newTaskForm.classList.add('hide');
+  }
+  else if (selectedListId === option.complete) {
     deleteContainer.classList.remove('hide');
     deleteListBtn.classList.add('hide');
+    newTaskForm.classList.add('hide');
+
   } else {
     deleteContainer.classList.remove('hide');
     deleteListBtn.classList.remove('hide');
+    newTaskForm.classList.remove('hide');
   }
 
   listTitleElement.innerText = selectedList.name;
