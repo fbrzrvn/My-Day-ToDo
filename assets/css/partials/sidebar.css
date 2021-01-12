@@ -66,3 +66,13 @@
   }
 
 }
+
+@media screen and (max-width: 375px) {
+  .sidebar ul {
+    display: flex;
+    flex-flow: column wrap;
+  }
+  .sidebar__list {
+    margin: 0;
+  }
+}

@@ -6,6 +6,7 @@ header {
   justify-content: space-between;
   padding: 1em 2em;
   height: 8vh;
+  padding: 1em;
 }
 .logo a {
   text-decoration: none;
@@ -38,6 +39,7 @@ header {
     justify-content: center;
     gap: .5em;
     height: 10vh;
+    padding: 0;
   }
   .logo {
     margin-top: 1.5em;
